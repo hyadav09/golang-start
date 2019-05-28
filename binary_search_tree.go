@@ -17,7 +17,9 @@ func main() {
 		root = addNode(&tnode{sarray[i], nil, nil}, root)
 	}
 
-	printTree(root)
+	printTree(root
+        ht := findTreeHeight(root)
+	println("Tree height = ", ht)
 }
 
 func printTree(root *tnode) {
@@ -27,6 +29,20 @@ func printTree(root *tnode) {
 		//println(root.value)
 		printTree(root.rnode)
 		println(root.value)
+	}
+}
+func findTreeHeight(root *tnode) int {
+	if root == nil {
+		return 0
+	} else {
+		lheight := findTreeHeight(root.lnode)
+		rheight := findTreeHeight(root.rnode)
+
+		if lheight > rheight {
+			return (lheight + 1)
+		} else {
+			return (rheight + 1)
+		}
 	}
 }
 
